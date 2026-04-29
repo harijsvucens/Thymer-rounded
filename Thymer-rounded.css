@@ -1,0 +1,619 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
+
+/* ============================================================
+  ROUNDED THEME — structure & geometry only
+   
+   ============================================================ */
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES
+   ============================================================ */
+
+html,
+html {
+
+  /* Fonts & Sizing */
+  --font-sans:
+    "Manrope", "SuisseIntl", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Helvetica, Arial, sans-serif !important;
+  --text-size-small:    0.9rem  !important;
+  --text-size-smaller:  0.85rem !important;
+  --text-size-xsmall:   0.8rem  !important;
+  --text-size-xxsmall:  0.75rem !important;
+  --text-size-normal:   0.95rem !important;
+  --text-size-large:    1.1rem  !important;
+  --text-size-h1:       2rem    !important;
+  --font-weight-normal: 400     !important;
+  --font-weight-bold:   600     !important;
+
+  /* Geometry */
+  --radius-normal:   7px  !important;
+  --radius-larger:   11px !important;
+  --radius-xlarge:   14px !important;
+  --button-radius:   9px  !important;
+  --modal-radius:    14px !important;
+
+  /* Editor Geometry */
+  --ed-line-height:      1.65em !important;
+  --ed-checkbox-radius:  5px    !important;
+  --ed-radius-normal:    7px    !important;
+  --ed-radius-pill:      999px  !important;
+  --ed-radius-block:     13px   !important;
+  --ed-line-padding:     2px 4px !important;
+  --ed-checkbox-size:    1.1em  !important;
+
+  /* Layout */
+  --panel-bar-height:         48px  !important;
+  --panel-bar-top-padding:    8px   !important;
+  --panel-banner-height:      240px !important;
+  --layout-margin-size:       32px  !important;
+  --layout-large-margin-size: 40px  !important;
+  --max-layout-width:         800px !important;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+html body {
+  font-family: "Manrope", sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* ============================================================
+   NOISE REMOVAL
+   ============================================================ */
+
+html .panel-header-scrim,
+html .image-header-scrim,
+html .panel-heading:before,
+html body:before,
+html .cmdpal--dialog:before,
+html .cmdpal--inline:before,
+html .banner-empty,
+html .banner-force-empty {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  html *,
+  html *::before,
+  html *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1    !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   PANEL HEADER
+   ============================================================ */
+
+html .banner-container {
+  animation: none !important;
+}
+
+html .panel-controls,
+html .panel-bar--tabsbar {
+  animation: none !important;
+  padding-top: var(--panel-bar-top-padding) !important;
+}
+
+html .panel-controls-title,
+html .panel-tab--title-wrapper {
+  animation: none !important;
+  visibility: visible !important;
+}
+
+/* ============================================================
+   COMMAND PALETTE DIALOG
+   ============================================================ */
+
+html .cmdpal--dialog {
+  position: fixed !important;
+  left: 50% !important;
+  transform: translate(-50%) !important;
+  top: 100px !important;
+  width: 500px !important;
+  max-width: calc(100vw - 20px) !important;
+  z-index: 9999 !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}
+
+
+
+/* Input container */
+html .cmdpal--input-container,
+html .cmdpal--inline-input-container {
+  padding: 0 !important;
+  margin: 0 12px !important;
+}
+
+/* Search input */
+html .cmdpal--input,
+html .cmdpal--inline-input {
+  width: 100% !important;
+  padding: 16px 4px 12px !important;
+  font-size: var(--text-size-large, 1rem) !important;
+  font-family: var(--font-sans) !important;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  font-weight: 400 !important;
+  box-sizing: border-box !important;
+}
+
+html .cmdpal--input:focus-visible,
+html .cmdpal--inline-input:focus-visible,
+html .cmdpal--dialog input:focus-visible,
+html .cmdpal--inline input:focus-visible {
+  outline: none !important;
+}
+
+/* Autocomplete list */
+html .cmdpal--dialog .autocomplete,
+html .cmdpal--inline .autocomplete {
+  padding: 6px 8px 10px !important;
+  gap: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* Options */
+html .autocomplete--option,
+html .vscroll-node .autocomplete--option,
+html .dlg-workspace-item {
+  padding: 9px 12px !important;
+  display: flex !important;
+  font-size: var(--text-size-small, 0.9rem) !important;
+  align-items: center !important;
+  gap: 9px !important;
+  cursor: pointer !important;
+  border-radius: 13px !important;
+  height: auto !important;
+  min-height: 38px !important;
+  line-height: 1.4 !important;
+  margin: 1px 0 !important;
+}
+
+html .autocomplete--option-label {
+  flex-grow: 1 !important;
+}
+
+html .autocomplete--option-right {
+  margin-left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+/* Keyboard badge */
+html .autocomplete--kbd,
+html .kbd,
+html .statusbar--kbd {
+  border-radius: 8px !important;
+  padding: 2px 6px !important;
+  letter-spacing: 0.02em !important;
+  font-variant-numeric: tabular-nums !important;
+  white-space: nowrap !important;
+}
+
+/* Divider */
+html .autocomplete--divider {
+  height: 1px !important;
+  border: none !important;
+  margin: 5px 4px !important;
+  padding: 0 !important;
+}
+
+/* Disabled option */
+html .autocomplete--option-disabled {
+  opacity: 0.4 !important;
+  cursor: default !important;
+  pointer-events: none !important;
+}
+
+/* ============================================================
+   PANEL TABS & BUTTONS
+   ============================================================ */
+
+html .panel-bar--tabsbar {
+  min-height: 48px !important;
+}
+
+html .panel-tab {
+  height: 36px !important;
+  line-height: 36px !important;
+  padding: 0 12px !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+html .panel-tab--thumb {
+  border-radius: 12px !important;
+  height: 100% !important;
+  align-items: center !important;
+}
+
+html .button,
+html .button-normal,
+html .button-minimal,
+html .button-primary {
+  height: 34px !important;
+  padding: 0 12px !important;
+  line-height: 34px !important;
+}
+
+html .button-primary {
+  padding: 0 16px !important;
+}
+
+html .button:active,
+html .button-primary:active,
+html .button-minimal:active,
+html .button-normal:active {
+  transform: scale(0.97) !important;
+}
+
+html .button-group {
+  border-radius: 17px !important;
+  gap: 2px !important;
+  padding: 4px !important;
+}
+
+html .button-group .button-minimal,
+html .view-button,
+html .statusbar--item-hoverable {
+  border-radius: 12px !important;
+}
+
+html .panel-icon-button,
+html .panel-bar--crumbnav-icon,
+html .chat-img-delete-btn {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 8px !important;
+}
+
+html .panel-icon-button:active,
+html .panel-bar--crumbnav-icon:active {
+  transform: scale(0.92) !important;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+html .sidebar-item,
+html .sidebar-item-hoverable {
+  min-height: 40px !important;
+  border-radius: 13px !important;
+}
+
+html .sidebar-item {
+  padding: 0 8px !important;
+}
+
+html .sidebar-item-icon {
+  flex-shrink: 0 !important;
+}
+
+html .sidebar.sidebar-collapsed .sidebar-item,
+html .sidebar.sidebar-collapsed .sidebar-item-hoverable,
+html .sidebar.sidebar-collapsed .sidebar-item-collection {
+  padding: 0 !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 40px !important;
+  margin: 0 auto !important;
+}
+
+html .sidebar.sidebar-collapsed .sidebar-item-icon {
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+html .sidebar.sidebar-collapsed .sidebar-item-toggler {
+  display: none !important;
+}
+
+/* ============================================================
+   FORMS & INPUTS
+   ============================================================ */
+
+html input.form-input,
+html select.form-input,
+html textarea.form-input {
+  border-radius: 12px !important;
+  padding: 8px 12px !important;
+  min-height: 36px !important;
+}
+
+html input:focus-visible,
+html textarea:focus-visible,
+html select:focus-visible,
+html button:focus-visible {
+  outline: none !important;
+}
+
+html .line-check-div {
+  border-radius: 6px !important;
+  border-width: 0.5px !important;
+}
+
+html input[type="range"] {
+  height: 6px !important;
+  border-radius: 6px !important;
+}
+
+html input[type="range"]::-webkit-slider-runnable-track {
+  border-radius: 6px !important;
+  height: 6px !important;
+}
+
+html input[type="range"]::-webkit-slider-thumb {
+  width: 12px !important;
+  height: 24px !important;
+  border-radius: 6px !important;
+  margin-top: -9px !important;
+  cursor: grab !important;
+}
+
+/* ============================================================
+   CONTENT — IMAGES, CARDS, BLOCKS
+   ============================================================ */
+
+html .img_large_container img,
+html .gallery-view-card-banner-img,
+html .messageItem img {
+  border-radius: 20px !important;
+}
+
+html .gallery-view-card:hover .gallery-view-card-img {
+  transform: scale(1.03) !important;
+}
+
+html .board-card,
+html .gallery-view-card,
+html .page-props-row,
+html .table-view-row {
+  border-radius: 13px !important;
+}
+
+html .board-card:hover {
+  transform: translateY(-1px) !important;
+}
+
+html .lineitem-hashtag,
+html .lineitem-backlink-pill,
+html .lineitem-ref {
+  border-radius: 9px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+html .lineitem-hashtag {
+  padding: 0 5px !important;
+}
+
+html .tooltip-element {
+  border-radius: 12px !important;
+  padding: 8px 14px !important;
+  line-height: 24px !important;
+  font-size: 13px !important;
+  letter-spacing: 0.01em !important;
+  font-weight: 500 !important;
+}
+
+html .lineitem-code {
+  border-radius: 6px !important;
+}
+
+html code {
+  border-radius: 7px !important;
+  padding: 0.1em 0.45em !important;
+}
+
+html .block-container-div.block-codelang > .listitem,
+html .terminal-bash-block {
+  border-radius: 13px !important;
+}
+
+html .block-style-quote {
+  border-radius: 0 !important;
+  padding-left: 16px !important;
+  margin-left: 0 !important;
+}
+
+html .terminal-user-bubble {
+  border-radius: 17px !important;
+  border-bottom-right-radius: 4px !important;
+  border: none !important;
+}
+
+html .link-menu,
+html .toaster,
+html .modal-dialog-has-border {
+  border-radius: 20px !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+html .heading-h1 > span { letter-spacing: -0.025em !important; }
+html .heading-h2 > span { letter-spacing: -0.015em !important; }
+html .heading-h3 > span { letter-spacing: -0.010em !important; }
+html .title             { letter-spacing: -0.030em !important; }
+
+html .statusbar--status-bar,
+html .autocomplete--option-right,
+html listview-editor,
+html date-time,
+html .panel-tab-date,
+html .statusbar--users {
+  font-variant-numeric: tabular-nums !important;
+}
+
+html date-time,
+html .panel-tab-date,
+html .statusbar--users {
+  white-space: nowrap !important;
+}
+
+html .resize-text {
+  white-space: pre !important;
+  visibility: hidden !important;
+}
+
+html .lineitem-num-descendants,
+html .lineitem-debughint,
+html .owner_label,
+html .dd-list_wrap {
+  transform: translate3d(0, 0, 0) !important;
+  vertical-align: baseline !important;
+}
+
+/* ============================================================
+   SCROLLBARS
+   ============================================================ */
+
+html .panel-scroller-y,
+html .modal-body,
+html .sidebar {
+  scrollbar-width: none !important;
+}
+
+html .panel-scroller-y::-webkit-scrollbar,
+html .modal-body::-webkit-scrollbar,
+html .sidebar::-webkit-scrollbar {
+  display: none !important;
+}
+
+html .vscrollbar-thumb {
+  -webkit-mask-image: none !important;
+  border-radius: var(--scrollbar-radius) !important;
+  width: 3px !important;
+}
+
+html .hscrollbar-thumb {
+  -webkit-mask-image: none !important;
+  border-radius: var(--scrollbar-radius) !important;
+  height: 3px !important;
+}
+
+/* ============================================================
+   KANBAN / BOARD
+   ============================================================ */
+
+html .board-column {
+  border-radius: var(--radius-xlarge) !important;
+  padding: 8px !important;
+  margin-right: 10px !important;
+}
+
+html .board-column-title {
+  padding: 8px 8px 16px !important;
+}
+
+html .board-card-create {
+  border-radius: var(--radius-larger) !important;
+  justify-content: center !important;
+  opacity: 0.6 !important;
+  margin-top: 8px !important;
+}
+
+html .board-card-create:hover {
+  opacity: 1 !important;
+}
+
+/* ============================================================
+   FOLDED / COLLAPSED BLOCKS
+   ============================================================ */
+
+html .listitem-folded .lineitem-btn-unfold {
+  border-radius: 8px !important;
+  padding: 0 8px 4px !important;
+  margin-left: 8px !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+  letter-spacing: 1px !important;
+}
+
+html .listitem-folded .lineitem-btn-unfold:hover {
+  transform: scale(0.92) !important;
+}
+
+/* ============================================================
+   SELECTION BOUNDARIES
+   ============================================================ */
+
+html blob-container,
+html .gallery-view-card,
+html .avatar,
+html .item-drag-handle,
+html .line-check-div,
+html .panel-icon-button,
+html .image-resize-controls {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+html .line-div,
+html .cmdpal--input,
+html .prop-edit-text input,
+html .prop-edit-text textarea {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  user-select: text !important;
+  cursor: text !important;
+}
+
+/* ============================================================
+   MISC
+   ============================================================ */
+
+html .panel-h-sizer {
+  border-left-color: transparent !important;
+}
+
+html .item-drag-handle {
+  border-radius: 50% !important;
+  width: 14px !important;
+  height: 14px !important;
+  font-size: 14px !important;
+}
+
+html .window-control {
+  width: 45px !important;
+  height: 30px !important;
+  border-radius: 0 !important;
+  display: flex !important;
+}
+
+
+/* ========================================================================== */
+/* SAFE SNAPPINESS — kill all animations/transitions globally                 */
+/* By using :not(#fake-id) multiple times, we force the specificity to be     */
+/* higher than any class-based selector in the file.                          */
+/* ========================================================================== */
+html:not(#_):not(#_):not(#_) *,
+html:not(#_):not(#_):not(#_) *::before,
+html:not(#_):not(#_):not(#_) *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
